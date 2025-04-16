@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="marquee-header">
+        <span class="marquee-text">🚐 Developed by Tin Win Ko</span>
+      </div>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <!-- ✅ Header Container -->
+     <!-- ✅ New Buttons in One Row with Menu Icon -->
+     <div class="top-buttons">
+        <button onclick="openTownWisePopup()">🏛️ Town Wise</button>
+        <button onclick="showLastCompany()">🔍 Now</button>
+        <button onclick="showNotesPopup()">📑 Notes</button>
+    <!-- ✅ Menu Icon moved here -->
+    <div class="menu-container">
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
+        <div class="dropdown-menu" id="menu-dropdown">
+            <button onclick="openCalculator()">🧮 Calculator</button>
+            <button onclick="showDebtPopup(); switchDebtTab('receive');">📒အကြွေးစာရင်း😁</button>           
+            <hr>
+            <label for="theme-select" style="color: white; padding-left: 10px;">🎨 Choose Theme</label>
+            <select id="theme-select" onchange="changeTheme(this.value)" style="margin: 10px; width: 90%;">
+                <option value="light">🌞 Light</option>
+                <option value="dark">🌙 Dark</option>
+                <option value="colorful">🌈 Colorful</option>
+                <option value="retro">📺 Retro</option>
+                <option value="neon">⚡ Neon</option>
+            </select>
+            <!-- Menu ထဲမှာ ထည့်ဖို့ Button -->
+<button onclick="showPreferredExport()">📤 Export/Import Names</button>
+
+<!-- Export/Import Section -->
+<div id="preferred-export-section" style="display: none; padding: 10px;">
+    <textarea id="preferred-export-box" rows="10" style="width: 100%; font-family: monospace;"></textarea>
+    <div style="margin-top: 10px; text-align: center;">
+        <button onclick="restorePreferredFromText()">✅ Restore from Text</button>
+    </div>
+</div>
+            <hr>
+<label for="font-size-select" style="color: white; padding-left: 10px;">🔠 Font Size</label>
+<select id="font-size-select" onchange="changeFontSize(this.value)" style="margin: 10px; width: 90%;">
+  <option value="14px">Small</option>
+  <option value="16px" selected>Medium</option>
+  <option value="18px">Large</option>
+  <option value="20px">Extra Large</option>
+</select>
+            <hr>
+            <label style="color: white; padding-left: 10px;">☁️ Backup & Restore</label>
+            
+            <button onclick="backupData()" style="margin: 6px 10px;">📋 Backup</button>
+            <button onclick="toggleRestoreBox()" style="margin: 6px 10px;">♻️ Restore</button>
+            
+            <div id="restore-section" style="display: none; margin: 10px;">
+              <textarea id="restore-box" placeholder="Paste your backup data here..." rows="8" style="width: 100%;"></textarea>
+              <small style="color: #888;">
+                * ရက်တူပေမယ့် Entry အသစ်ရှိတယ်ဆိုရင် Restore ခွင့်ပြုမယ်။
+              </small>
+              <button onclick="restoreData()" style="margin-top: 5px;">✅ Confirm Restore</button>
+            </div>
+        </div>
+    </div>
+</div>        
+
+  <!-- ✅ Calculator Box -->
+  <div id="calculator" class="calculator-box">
+    <input type="text" id="calc-display" readonly />
+    <div class="calc-buttons">
+        <button class="num-btn" onclick="appendToCalc('7')">7</button>
+        <button class="num-btn" onclick="appendToCalc('8')">8</button>
+        <button class="num-btn" onclick="appendToCalc('9')">9</button>
+        <button class="clear-btn" onclick="clearCalc()">C</button>
+      
+        <button class="num-btn" onclick="appendToCalc('4')">4</button>
+        <button class="num-btn" onclick="appendToCalc('5')">5</button>
+        <button class="num-btn" onclick="appendToCalc('6')">6</button>
+        <button class="op-btn" onclick="appendToCalc('+')">+</button>
+      
+        <button class="num-btn" onclick="appendToCalc('1')">1</button>
+        <button class="num-btn" onclick="appendToCalc('2')">2</button>
+        <button class="num-btn" onclick="appendToCalc('3')">3</button>
+        <button class="op-btn" onclick="appendToCalc('-')">−</button>
+      
+        <button class="num-btn" onclick="appendToCalc('0')">0</button>
+        <button class="num-btn" onclick="appendToCalc('.')">.</button>
+        <button class="equal-btn" onclick="calculateCalc()">=</button>
+        <button class="op-btn" onclick="appendToCalc('*')">×</button>
+      
+        <button class="op-btn" onclick="appendToCalc('/')">÷</button>
+        <!-- ✅ Close Button -->
+<div style="margin-top: 12px; text-align: center;">
+    <button onclick="closeCalculator()" style="padding: 8px 16px; font-size: 16px;">❌ Close</button>
+</div>
+      </div>
+    </div>
+</div>
+<!-- Pop up Content Example -->
+<div id="debt-overlay" class="popup-overlay" style="display: none;">
+    <div id="debt-popup" class="resizable-box">
+      <h3 style="margin-top: 0;">📒 အကြွေးစာရင်း😁😁</h3>
+  
+      <div class="tab-buttons">
+        <button onclick="switchDebtTab('receive')" id="tab-receive" class="tab-active">💰 အကြွေးရရန်😁</button>
+        <button onclick="switchDebtTab('owe')" id="tab-owe">🧾 အကြွေးပေးရန်😡</button>
+      </div>
+  
+      <textarea id="debt-receive" placeholder="သူများငွေ ရမည့်စာရင်း..." rows="8" style="width: 100%; display: block;"></textarea>
+      <textarea id="debt-owe" placeholder="ငွေ ပေးရန်စာရင်း..." rows="8" style="width: 100%; display: none;"></textarea>
+  
+      <div style="margin-top: 10px; display: flex; justify-content: flex-end; gap: 8px;">
+        <button onclick="saveDebt()">💾 Save</button>
+        <button onclick="clearDebt()">🗑 Delete</button>
+        <button onclick="closeDebtPopup()">❌ Close</button>
+      </div>
+      <div style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;"></div>
+    </div>
+  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+    <!-- ✅ Modal Overlay -->
+    <div id="townWiseModal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+          <div class="modal-header">
+            <h3>Town Wise</h3>
+            <button class="close-btn-soft" onclick="closeTownWisePopup()">✖</button>
+          </div>
+      
+          <div id="townButtonList" class="town-button-list"></div>
+          <div id="townContentView" class="town-content-scroll"></div>
+        </div>
+      </div>
+  
+  <!-- ✅ JavaScript ဖိုင်တွေကတော့ ထို့အောက်မှာရေးပါ -->
+  <script src="script.js"></script>
+  <div id="debt-overlay" class="popup-overlay" style="display: none;">
+    <div id="debt-popup" class="resizable-box">
+      <!-- Pop up Content Here -->
+    </div>
+  </div>
+  </body>
+  </html>
+</body>
+</html>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+
+        <!-- Replace the existing preferred name sections with these: -->
+
+<!-- Replace the existing preferred name sections with these: -->
+
+<!-- Company Section -->
+<label for="company">Company:</label>
+<div class="preferred-row">
+    <select id="company"></select>
+    <div class="preferred-input-group">
+        <input type="text" id="new-company" placeholder="New Company">
+        <div class="preferred-buttons">
+            <button onclick="addPreferred('company')">Add</button>
+            <button onclick="editPreferred('company')">Edit</button>
+            <button onclick="deletePreferred('company')">🗑️ </button>
+        </div>
+    </div>
+</div>
+
+<!-- Name Section -->
+<label for="name">Name:</label>
+<div class="preferred-row">
+    <select id="name"></select>
+    <div class="preferred-input-group">
+        <input type="text" id="new-name" placeholder="New Name">
+        <div class="preferred-buttons">
+            <button onclick="addPreferred('name')">Add</button>
+            <button onclick="editPreferred('name')">Edit</button>
+            <button onclick="deletePreferred('name')">🗑️ </button>
+        </div>
+    </div>
+</div>
+
+<!-- Town Section -->
+<label for="town">Town:</label>
+<div class="preferred-row">
+    <select id="town"></select>
+    <div class="preferred-input-group">
+        <input type="text" id="new-town" placeholder="New Town">
+        <div class="preferred-buttons">
+            <button onclick="addPreferred('town')">Add</button>
+            <button onclick="editPreferred('town')">Edit</button>
+            <button onclick="deletePreferred('town')">🗑️ </button>
+        </div>
+    </div>
+</div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+     <!-- ✅ ဘေးခြင်းကပ်ထားတဲ့ Save, Refresh, Search Box, Search Icon -->
+<div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+    <button onclick="saveEntry()">💾 Save</button>
+    <button onclick="location.reload()" class="refresh-btn">🔄</button>
+    <input type="text" id="search-box" placeholder="Search Name...">
+<button onclick="searchEntries()">🔍</button>
+  </div>
+  </div>
+        <h3>Saved Entries</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Company</th>
+                    <th>Name</th>
+                    <th>Town</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="entry-list"></tbody>
+        </table>
+
+        <h3>Total Quantity:</h3>
+        <ul id="total-quantity"></ul>
+    </div>
+<!-- ✅ Shield Box for Showing Data -->
+<div id="shield-box" class="shield-box">
+    <div class="shield-content">
+        <span class="close-btn" onclick="closeShield()">×</span>
+        <h3 id="shield-title">Title</h3>
+        <div id="shield-body">Content Goes Here...</div>
+        
+        <!-- ✅ Previous & Next Buttons -->
+<div class="company-navigation">
+    <button onclick="prevCompany()">⏮️ Previous</button>
+    <button onclick="nextCompany()">⏭️ Next</button>
+</div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Scripts -->
+<script src="script.js"></script>
+</body>
+</html>
+<!-- ✅ Notes Popup Box -->
+<!-- ✅ Notes Popup Box -->
+<div id="notes-popup" class="shield-box">
+    <div class="shield-content">
+        <h3>Notes</h3>
+        <textarea id="popup-notes" rows="8"></textarea>
+        <div class="notes-buttons">
+            <button onclick="saveNotes()">💾 Save Notes</button>
+            <button onclick="copyNotes()">📋 Copy Notes</button>
+            <button onclick="closeNotesPopup()">❌ Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="action-button-row" style="display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0;">
+    <button onclick="copyEntriesBySelectedDate()">📋 Sheets</button>
+    <button onclick="copyExcelFormattedText()">📋 Excel</button>
+    <button onclick="printTable()">🖨️ Print</button>
+    <button onclick="copyMonthlySummary()">📋Summary</button>
+    <button onclick="scrollToTop()">🔙 Back</button>
+</div>
+
+

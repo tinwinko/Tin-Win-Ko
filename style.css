@@ -1,0 +1,1833 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    animation: sparkle 1s infinite alternate, colorChange 2s infinite;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* ✅ New Name, New Town, New Company ကို Gray Background ပြောင်း */
+#new-company, #new-name, #new-town {
+    background-color: lightgray;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Refresh Button Style */
+.refresh-btn {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+.refresh-btn:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* 👍 လက်မ Effect */
+.thumb-up {
+    font-size: 120px;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+.check-container {
+    display: flex;
+    align-items: center; /* Checkbox, Name, Quantity တန်းညီစေမယ် */
+    gap: 10px; /* Checkbox နဲ့စာတွေအကွာအဝေးညီညီဖြစ်စေမယ် */
+}
+
+.check-container {
+    display: flex;
+    justify-content: space-between; /* Checkbox ကို Name နောက်ဆုံးမှာထားမယ် */
+    align-items: center; /* Text နဲ့ Checkbox တန်းညီစေမယ် */
+    padding: 5px 0; /* Layout ကို ပိုညီစေရန် */
+}
+
+.check-container input[type="checkbox"] {
+    width: 18px; /* Checkbox အရွယ်အစား */
+    height: 18px;
+    margin-left: 10px; /* Name နဲ့ Checkbox အကွာအဝေး */
+}
+.text {
+    font-size: 16px; /* Text အရွယ်အစားကို စာလုံးချင်းမတူဘဲ တူအောင်ပြင် */
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2); /* Checkbox ကို ချုံ့ညှင်း */
+}
+.row {
+    display: flex;
+    align-items: center; /* Checkbox နဲ့ Text ကို တန်းညီစေမယ် */
+    gap: 10px; /* Checkbox နဲ့ Text ကြား အကွာအဝေး */
+    padding: 5px 0;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+/* Labels (Date, Company, Name, Town) - Bold & Stylish */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF4500; /* Orange Red */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Date Box */
+#date {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: rgb(246, 246, 248);
+    background: linear-gradient(135deg, #FF6B6B, #FF6B6B); /* Red - Orange Gradient */
+    box-shadow: 4px 4px 10px rgba(208, 80, 80, 0.3);
+    outline: none;
+}
+
+/* ✅ Input Boxes ကို Color ထည့်ရန် */
+#company, #name, #town, #quantity {
+    background-color: #DFF6FF; /* Light Blue */
+    border: 2px solid #007BFF; /* Blue Border */
+    color: black;
+    font-weight: bold;
+}
+
+/* ✅ Preferred Name တွေကို ခဲရောင်နောက်ခံ + အနက်ရောင်စာသား */
+#new-company, #new-name, #new-town {
+    background-color: lightgray !important;
+    color: black !important;
+    font-weight: bold;
+}
+/* ✅ Town Wise Header */
+.town-wise-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 3px solid red;
+    padding-bottom: 5px;
+}
+
+/* ✅ Town Wise Box */
+.town-box {
+    background: #fff5f5;
+    padding: 15px;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ✅ Company Wise Header */
+.company-wise-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    border-bottom: 3px solid green;
+    padding-bottom: 5px;
+}
+
+/* ✅ Company Wise Box */
+.company-box {
+    background: #f0fdf4;
+    padding: 15px;
+    border: 2px solid green;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ✅ Red Bold Text */
+.red-bold {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ✅ Blue Bold Text */
+.blue-text {
+    color: blue;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ✅ Big Red Bold */
+.big-red-bold {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ✅ List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* ✅ CheckBox Design */
+.name-checkbox {
+    margin-right: 8px;
+    transform: scale(1.2); /* ✅ Checkbox ကို ကြီးအောင် ပြမယ် */
+    cursor: pointer;
+}
+
+/* ✅ Selected Name Box Red Background */
+.selected {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* ✅ Town Wise Header */
+.town-wise-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 3px solid red;
+    padding-bottom: 5px;
+}
+
+/* ✅ Town Wise Box */
+.town-box {
+    background: #fff5f5;
+    padding: 15px;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ✅ Company Wise Header */
+.company-wise-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    border-bottom: 3px solid green;
+    padding-bottom: 5px;
+}
+
+/* ✅ Company Wise Box */
+.company-box {
+    background: #f0fdf4;
+    padding: 15px;
+    border: 2px solid green;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ✅ Red Bold Text */
+.red-bold {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ✅ Blue Bold Text */
+.blue-text {
+    color: blue;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ✅ Big Red Bold */
+.big-red-bold {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ✅ List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    font-size: 16px;
+    color: black;
+    font-weight: normal;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+}
+#wave-text {
+    display: flex;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#wave-text span {
+    display: inline-block;
+    animation: wave 1.5s infinite ease-in-out;
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* 🔹 စာလုံး တစ်လုံးခြင်း Wave Effect */
+#wave-text span:nth-child(1) { animation-delay: 0s; }
+#wave-text span:nth-child(2) { animation-delay: 0.1s; }
+#wave-text span:nth-child(3) { animation-delay: 0.2s; }
+#wave-text span:nth-child(4) { animation-delay: 0.3s; }
+#wave-text span:nth-child(5) { animation-delay: 0.4s; }
+#wave-text span:nth-child(6) { animation-delay: 0.5s; }
+#wave-text span:nth-child(7) { animation-delay: 0.6s; }
+#wave-text span:nth-child(8) { animation-delay: 0.7s; }
+#wave-text span:nth-child(9) { animation-delay: 0.8s; }
+#wave-text span:nth-child(10) { animation-delay: 0.9s; }
+#wave-text span:nth-child(11) { animation-delay: 1s; }
+#wave-text span:nth-child(12) { animation-delay: 1.1s; }
+#wave-text span:nth-child(13) { animation-delay: 1.2s; }
+#wave-text span:nth-child(14) { animation-delay: 1.3s; }
+#wave-text span:nth-child(15) { animation-delay: 1.4s; }
+.header-container {
+    display: flex;
+    justify-content: space-between; /* ✅ ဘယ်မှာ Title / ညာမှာ Time */
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+#current-time {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue; /* ✅ Time ကို အပြာရောင် */
+}
+/* ✅ Header အောက်မှာ Buttons ကို တစ်ကြောင်းတည်း row တန်းတူအောင် */
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ✅ Buttons Style */
+.top-buttons button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    min-width: 120px; /* ✅ Button Size ကို တူအောင် */
+}
+
+/* ✅ Button Colors */
+.top-buttons button:nth-child(1) { background-color: #28a745; color: white; } /* Town Wise */
+.top-buttons button:nth-child(2) { background-color: #007bff; color: white; } /* New Company */
+top-buttons button:nth-child(3) { background-color: #ffc107; color: black; } /* Notes */
+/* ✅ Save Notes & Back Button ကို တစ်တန်းတည်း row အနေနဲ့ ထားမယ် */
+.notes-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ✅ Back Button Style */
+.notes-buttons button:nth-child(2) {
+    background-color: #dc3545; /* ✅ Back Button ကို အနီရောင် */
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    min-width: 120px;
+}
+
+.notes-buttons button:nth-child(2):hover {
+    background-color: #c82333; /* ✅ Hover Effect */
+}
+/* ✅ Shield Box (Popup) */
+.shield-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ✅ Shield Box Content */
+.shield-content {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+/* ✅ Close Button */
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* ✅ Navigation Buttons */
+.company-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.company-navigation button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background-color: #007bff;
+    color: white;
+}
+
+.company-navigation button:hover {
+    background-color: #0056b3;
+}
+/* ✅ Notes Popup Box */
+.shield-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ✅ Shield Box Content */
+.shield-content {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+/* ✅ Close Button */
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* ✅ Save & Close Buttons */
+.notes-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.notes-buttons button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    min-width: 120px;
+}
+
+.notes-buttons button:nth-child(1) { background-color: #28a745; color: white; } /* Save */
+.notes-buttons button:nth-child(2) { background-color: #dc3545; color: white; } /* Close */
+/* ✅ Notes Textarea ကို ချဲ့မယ် */
+#popup-notes {
+    width: 100%; /* ✅ Parent Div ကို အပြည့်ယူမယ် */
+    height: 200px; /* ✅ Height ကို ချဲ့မယ် */
+    font-size: 18px; /* ✅ စာလုံးအရွယ်ကို ကြီးစေမယ် */
+    padding: 10px; /* ✅ အတွင်း Margin ပိုထားမယ် */
+    border: 2px solid #007bff; /* ✅ Blue Border */
+    border-radius: 8px; /* ✅ အနားတွေ Rounded */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* ✅ Shadow ထည့် */
+    resize: vertical; /* ✅ User က လိုချင်သလို ချဲ့နိုင် */
+}
+/* ✅ Notes Popup Box ကို အလယ်ကျစေမယ် */
+.shield-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* ✅ အလယ်ကို ပြောင်းမယ် */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ✅ Shield Box Content (Popup Box) */
+.shield-content {
+    background: white;
+    padding: 20px;
+    width: 450px; /* ✅ Popup Box အကျယ် */
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+/* ✅ Notes Box (Textarea) */
+#popup-notes {
+    width: 100%; /* ✅ Parent Div ကို အပြည့်ယူမယ် */
+    height: 250px; /* ✅ Height ကို ပိုကြီးစေမယ် */
+    font-size: 18px; /* ✅ Font အရွယ်ကို ကြီးစေမယ် */
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* ✅ User က လိုချင်သလို ချဲ့နိုင် */
+}
+
+/* ✅ Close Button */
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+/* ✅ Menu Icon */
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+}
+
+.menu-icon:hover {
+    background: #0056b3;
+}
+
+/* ✅ Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: rgb(121, 65, 65);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 160px;
+    padding: 5px;
+}
+
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-menu button:hover {
+    background: #bfc215;
+}
+
+/* ✅ Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: rgb(235, 24, 24);
+}
+
+.dark-mode .menu-icon {
+    background: #444;
+}
+
+.dark-mode .dropdown-menu {
+    background: #222;
+}
+
+.dark-mode .dropdown-menu button {
+    color: white;
+}
+
+.dark-mode .dropdown-menu button:hover {
+    background: #444;
+}
+/* ✅ Wave Effect Keyframes */
+@keyframes waveAnimation {
+    0% { transform: translateY(0px); }
+    30% { transform: translateY(-10px); }
+    60% { transform: translateY(10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ✅ Preferred Name Buttons */
+.preferred-buttons {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.preferred-buttons button {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+.preferred-buttons button:nth-child(1) { background-color: #28a745; color: white; } /* Add */
+.preferred-buttons button:nth-child(2) { background-color: #ffc107; color: black; } /* Edit */
+.preferred-buttons button:nth-child(3) { background-color: #dc3545; color: white; } /* Delete */
+/* ✅ Preferred Name Row Layout */
+.preferred-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.preferred-row select {
+    flex: 1;
+    min-width: 150px;
+}
+
+.preferred-input-group {
+    display: flex;
+    flex: 2;
+    gap: 5px;
+}
+
+.preferred-input-group input {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* ✅ Preferred Name Buttons */
+.preferred-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.preferred-buttons button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    white-space: nowrap;
+}
+
+.preferred-buttons button:nth-child(1) { 
+    background-color: #28a745; 
+    color: white; 
+} /* Add */
+.preferred-buttons button:nth-child(2) { 
+    background-color: #ffc107; 
+    color: black; 
+} /* Edit */
+.preferred-buttons button:nth-child(3) { 
+    background-color: #dc3545; 
+    color: white; 
+} /* Delete */
+/* ✅ Export & Print Row */
+.export-print-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.export-print-row button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.export-print-row button:nth-child(1) {
+    background-color: #17a2b8; /* Teal for Export */
+    color: white;
+}
+
+.export-print-row button:nth-child(2) {
+    background-color: #6f42c1; /* Purple for Print */
+    color: white;
+}
+/* 🌞 Light Mode */
+.light-mode {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+/* 🌙 Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* 🌈 Colorful Mode */
+.colorful-mode {
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    color: #1a1a1a;
+}
+
+/* 📺 Retro Mode */
+.retro-mode {
+    background-color: #fef7e0;
+    color: #3e2723;
+    font-family: 'Courier New', monospace;
+}
+
+.retro-mode button {
+    background-color: #795548;
+    color: #fff8e1;
+}
+
+/* ⚡ Neon Mode */
+.neon-mode {
+    background-color: #000000;
+    color: #39ff14;
+}
+
+.neon-mode h2, 
+.neon-mode h3, 
+.neon-mode label {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+}
+
+.neon-mode button {
+    background-color: #ff00ff;
+    color: black;
+    text-shadow: 0 0 5px #fff;
+}
+.company-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.company-navigation button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background-color: #007bff;
+    color: white;
+}
+
+.company-navigation button:hover {
+    background-color: #0056b3;
+}
+.export-print-row button:nth-child(3) {
+    background-color: #ff5733; /* Orange */
+    color: white;
+}
+
+.export-print-row button:nth-child(3):hover {
+    background-color: #e03d00;
+}
+.export-print-row button:nth-child(4) {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.export-print-row button:nth-child(4):hover {
+    background-color: #495057;
+}
+.copy-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 4px 6px;
+    margin-left: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.copy-btn:hover {
+    background-color: #388e3c;
+}
+.action-button-row button {
+    flex: 1;
+    padding: 8px 12px;
+    min-width: 120px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.action-button-row button:hover {
+    background-color: #0056b3;
+}
+/* ✅ Side-by-side horizontal button row */
+.side-by-side-row {
+    display: flex;
+    flex-direction: row;         /* ➜ တစ်ကြောင်းတည်း */
+    align-items: center;         /* Center Vertically */
+    gap: 10px;                   /* Item ကြားအကွာအဝေး */
+    margin: 15px 0;
+    flex-wrap: wrap;             /* Screen ကျဉ်းရင် အလိုအလျောက် အောက်ဆင်း */
+}
+
+.side-by-side-row button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.side-by-side-row button:hover {
+    background-color: #0056b3;
+}
+
+.side-by-side-row input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    min-width: 200px;
+    flex-grow: 1;
+}
+/* ✅ Save + Refresh + Search Box + Icon => All in one row, side by side */
+.full-inline-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap; /* ✅ မျက်နှာပြင်ကျဉ်းရင် အလိုအလျောက်အောက်ဆင်း */
+  }
+  
+  .full-inline-row button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  
+  .full-inline-row button:hover {
+    background-color: #0056b3;
+  }
+  
+  .full-inline-row input[type="text"] {
+    flex: 1; /* ✅ စာရိုက် box ကိုအရှည်ယူစေမယ် */
+    min-width: 150px;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+  }
+  .footer-with-close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: #555;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .main-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #e9ecef;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    margin-left: 10px; /* if spacing needed */
+  }
+  
+  .main-button:hover {
+    background-color: #d4d4d4;
+    color: red;
+    border-color: #aaa;
+  }
+  /* ✅ Menu Icon in Button Row */
+.top-buttons .menu-container {
+    position: relative;
+    display: inline-block;
+    margin-left: auto; /* Pushes menu to the right */
+}
+
+.top-buttons .menu-icon {
+    font-size: 12px;
+    cursor: pointer;
+    padding: 8px 8px;
+    border-radius: 6px;
+    background: #6c757d; /* Gray to match other buttons */
+    color: white;
+    min-width: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+.top-buttons .menu-icon:hover {
+    background: #5a6268;
+}
+
+/* ✅ Adjust dropdown position */
+.top-buttons .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.marquee-header {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    border-bottom: 0px solid #ccc;
+    padding: 5px 0;
+    background: #f9f9f9;
+    text-align: center;
+    position: relative;
+  }
+  
+  .marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 10s linear infinite;
+    font-weight: bold;
+    color: #007bff;
+    font-size: 16px;
+  }
+  
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  /* ✅ Smooth Floating Animation for Thumb Up */
+@keyframes floatUp {
+    0% { 
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+    }
+    20% { 
+      transform: translate(-50%, -60%) scale(1.1);
+      opacity: 1;
+    }
+    80% { 
+      transform: translate(-50%, -70%) scale(1.1);
+      opacity: 1;
+    }
+    100% { 
+      transform: translate(-50%, -80%) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  .thumb-up {
+    animation: floatUp 1.5s ease-out forwards;
+    z-index: 1000;
+  }
+  
+  /* ✅ Button Click Animation */
+  button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  
+  button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(20, 20);
+      opacity: 0;
+    }
+  }
+  
+  /* ✅ Smooth Fade-in for Popups */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .shield-box[style*="display: flex"] .shield-content {
+    animation: fadeIn 0.4s ease-out;
+  }
+  
+  /* ✅ Marquee Animation Enhancement */
+  @keyframes smoothMarquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  .marquee-text {
+    animation: smoothMarquee 15s linear infinite;
+    padding-left: 0;
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-box {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn-soft {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .town-button-list {
+    display: flex;
+    flex-wrap: wrap; /* ✅ Side by side wrap */
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 120px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f8f9fa;
+  }
+  
+  .town-button-list button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background: #e6f0ff;
+    color: #f80808;
+    cursor: pointer;
+    white-space: nowrap; /* ✅ Prevent line break */
+  }
+  
+  .town-button-list button:hover {
+    background: #868b92;
+  }
+  
+  .town-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-box {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+  }
+  
+  .close-btn-soft {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-btn-soft:hover {
+    background-color: #fee;
+    color: red;
+  }
+  .town-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    font-size: 15px;
+    max-height: 200px;
+  }
+  .modal-box {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh; /* ✅ Modal box size များလာမည်မဟုတ် */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+ /* Town Wise Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+  }
+  
+  .modal-box {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  
+  /* Town Button List */
+  .town-button-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 40vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f8f9fa;
+  }
+  
+  .town-button-list button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background: #e6f0ff;
+    color: #007bff;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-grow: 1;
+    min-width: 120px;
+    text-align: center;
+    transition: 0.2s ease;
+  }
+  
+  .town-button-list button:hover {
+    background: #d0e0ff;
+  }
+  
+  /* Town Content View */
+  .town-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    max-height: 40vh;
+    min-height: 100px;
+    background-color: #fff;
+    color: #222;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  /* Name in blue, Quantity in red */
+  .town-name {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .town-qty {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .modal-box {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    .town-button-list button {
+      min-width: 100px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+  }
+  /* ✅ Calculator Popup Box */
+.calculator-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 280px;
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.3s ease;
+}
+
+/* ✅ Calculator Display */
+#calc-display {
+    width: 100%;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
+    background: #eaf6ff;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ✅ Calculator Buttons Grid */
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+/* ✅ Individual Buttons */
+.calc-buttons button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+/* ✅ Number Buttons */
+.num-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.num-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Operator Buttons (+ − × ÷) */
+.op-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.op-btn:hover {
+    background-color: #e68900;
+}
+
+/* ✅ Equal Button (=) */
+.equal-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.equal-btn:hover {
+    background-color: #388e3c;
+}
+
+/* ✅ Clear Button (C) */
+.clear-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.clear-btn:hover {
+    background-color: #d32f2f;
+}
+
+
+/* ✅ Close Button */
+.calculator-box .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ✅ Zoom Effect */
+@keyframes zoomIn {
+    from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+    to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+}
+#debt-popup .shield-content {
+    resize: both;
+    overflow: auto;
+}
+
+/* ✅ Date Box တိုအောင် */
+#date {
+    max-width: 200px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #FF6B6B, #FF6B6B);
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ✅ Quantity Box တိုအောင် */
+#quantity {
+    max-width: 120px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #DFF6FF;
+    border: 2px solid #007BFF;
+    color: black;
+    border-radius: 6px;
+}
+#quantity {
+    max-width: 250px;           /* ✅ Dropdown နဲ့ Width တူအောင် */
+    width: 100%;
+    padding: 10px;              /* ✅ Dropdown နဲ့ height/padding တူ */
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #DFF6FF;  /* ✅ Light Blue Background (Dropdown style) */
+    border: 2px solid #007BFF;  /* ✅ Blue Border */
+    color: black;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+#company, #name, #town {
+    background-color: #DFF6FF;
+    border: 2px solid #007BFF;
+    color: black;
+    font-weight: bold;
+}
+/* ✅ Number Buttons */
+.num-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.num-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Operator Buttons (+ − × ÷) */
+.op-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.op-btn:hover {
+    background-color: #e68900;
+}
+
+/* ✅ Equal Button (=) */
+.equal-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.equal-btn:hover {
+    background-color: #388e3c;
+}
+
+/* ✅ Clear Button (C) */
+.clear-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.clear-btn:hover {
+    background-color: #d32f2f;
+}
+.num-btn {
+    background-color: #007bff !important;
+    color: white !important;
+}
+.op-btn {
+    background-color: #ff9800 !important;
+    color: white !important;
+}
+.equal-btn {
+    background-color: #4caf50 !important;
+    color: white !important;
+}
+.clear-btn {
+    background-color: #f44336 !important;
+    color: white !important;
+}
+body {
+    font-size: 17px;   /* ✅ Base font size နည်းနည်းကြီး */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ✅ Label, Title, h3/h4 */
+label, h3, h4, h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ✅ Buttons တွေကလည်း ကြီးသွားအောင် */
+button {
+    font-size: 16px;
+    padding: 8px 12px;
+    font-weight: bold;
+}
+
+/* ✅ Preferred Input & Select Dropdown */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    font-size: 16px;
+    padding: 8px 10px;
+}
+table th, table td {
+    font-size: 16px;
+    padding: 10px;
+}
+#total-quantity {
+    font-size: 16px;
+}
+#total-quantity h3,
+#total-quantity h4 {
+    font-size: 18px;
+}
+#calc-display {
+    font-size: 22px;
+}
+
+.calc-buttons button {
+    font-size: 18px;
+}
+/* Increase base font sizes */
+body {
+    font-size: 18px;   /* Increased from 17px */
+}
+
+/* Larger labels and headings */
+label, h3, h4, h5 {
+    font-size: 20px;   /* Increased from 18px */
+}
+
+/* Larger buttons */
+button {
+    font-size: 18px;   /* Increased from 16px */
+    padding: 10px 14px; /* Slightly larger padding */
+}
+
+/* Larger input fields */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    font-size: 18px;   /* Increased from 16px */
+    padding: 10px 12px;
+}
+
+/* Larger table text */
+table th, table td {
+    font-size: 18px;   /* Increased from 16px */
+    padding: 12px;     /* More padding for better spacing */
+}
+
+/* Larger calculator display */
+#calc-display {
+    font-size: 28px;   /* Increased from 24px */
+}
+
+/* Larger calculator buttons */
+.calc-buttons button {
+    font-size: 22px;   /* Increased from 18px */
+    padding: 15px;     /* Larger buttons */
+}
+.resizable-box {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 10000;
+    width: 80%;
+    max-width: 600px;
+    min-width: 300px;
+    min-height: 250px;
+    resize: both;
+    overflow: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab-buttons button {
+    margin-left: 5px;
+    padding: 6px 12px;
+    border: none;
+    background: #e0e0e0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tab-active {
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+}
+
+.popup-buttons {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.popup-buttons button {
+    margin-left: 5px;
+}
+#debt-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 10000;
+    width: 90%;
+    max-width: 600px;
+    min-width: 300px;
+    min-height: 250px;
+    resize: both;
+    overflow: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* ✅ Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .resizable-box {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 90%;
+    max-width: 600px;
+    min-width: 300px;
+    min-height: 250px;
+    resize: both;
+    overflow: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .tab-buttons button {
+    margin-right: 5px;
+    padding: 6px 12px;
+    background: #eee;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .tab-active {
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+  }
+  .tab-buttons {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .tab-buttons button {
+    padding: 10px 18px;
+    margin: 0 5px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .tab-buttons button:hover {
+    background-color: #ddd;
+    border-color: #999;
+  }
+  
+  .tab-buttons .tab-active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+  }
+  :root {
+    --app-font-size: 16px;
+  }
+  
+  body, input, button, select, textarea, label {
+    font-size: var(--app-font-size);
+  }
